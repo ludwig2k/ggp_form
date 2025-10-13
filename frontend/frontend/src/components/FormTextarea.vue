@@ -1,0 +1,29 @@
+<template>
+    <div>
+      <label class="block mb-1 text-sm font-medium text-gray-700">{{ label }}</label>
+      <textarea
+        v-model="model"
+        :placeholder="placeholder"
+        rows="4"
+        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 outline-none resize-none"
+      ></textarea>
+    </div>
+  </template>
+  
+  <script setup>
+  import { computed } from 'vue'
+  
+  const props = defineProps({
+    modelValue: String,
+    label: String,
+    placeholder: String
+  })
+  
+  const emit = defineEmits(['update:modelValue'])
+  
+  const model = computed({
+    get: () => props.modelValue,
+    set: val => emit('update:modelValue', val)
+  })
+  </script>
+  

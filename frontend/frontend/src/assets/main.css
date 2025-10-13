@@ -1,0 +1,43 @@
+@import './base.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#app {
+  /* Remove the restrictive max-width and grid layout */
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+/* Keep link styles if needed */
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+  padding: 3px;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+/* Remove the problematic media query that's forcing a grid layout */
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    min-height: 100vh;
+  }
+
+  #app {
+    width: 100%;
+    /* Remove grid template columns */
+    padding: 0;
+  }
+}
+
