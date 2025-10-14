@@ -30,7 +30,7 @@
   
           <div
             v-if="expanded[i]"
-            class="mt-4 border-t pt-3 text-sm text-gray-700 whitespace-pre-wrap"
+            class="mt-4 border-t pt-3 text-sm text-gray-700 whitespace-pre-wrap leading-relaxed"
           >
             {{ formatData(resp.data) }}
           </div>
@@ -57,8 +57,75 @@
   }
   
   const formatData = (data) => {
-    return Object.entries(data)
-      .map(([key, value]) => `${key}: ${Array.isArray(value) ? value.join(', ') : value}`)
+    const sections = {
+      'Férias': {
+        choices: data.ferias,
+        other: data.outraFerias
+      },
+      'Ponto Eletrônico': {
+        choices: data.ponto,
+        other: data.outraPonto
+      },
+      'Gratificações': {
+        choices: data.gratificacoes,
+        other: data.outraGratificacoes
+      },
+      'Atestados': {
+        choices: data.atestados,
+        other: data.outraAtestados
+      },
+      'Licenças': {
+        choices: data.licencas,
+        other: data.outraLicencas
+      },
+      'Aposentadoria': {
+        choices: data.aposentadoria,
+        other: data.outraAposentadoria
+      },
+      'Folha de Pagamento': {
+        choices: data.folhaPagamento,
+        other: data.outraFolhaPagamento
+      },
+      'Servidor Extra': {
+        answer: data.servidorExtra,
+        details: data.duvidaServidorExtra
+      },
+      'Desligamento de Servidor': {
+        answer: data.desligarServidor,
+        details: data.duvidaDesligarServidor
+      },
+      'Expectativas GGDP': {
+        choices: data.esperaGGDP,
+        details: data.justificativaGGDP
+      },
+      'Melhorias Sugeridas': {
+        text: data.melhorias
+      }
+    }
+  
+    return Object.entries(sections)
+      .map(([title, content]) => {
+        let text = `📌 ${title}:\n`
+        
+        if (content.choices?.length) {
+          text += `   Selecionados: ${content.choices.join(', ')}\n`
+        }
+        if (content.other) {
+          text += `   Outras dúvidas: ${content.other}\n`
+        }
+        if (content.answer) {
+          text += `   Resposta: ${content.answer}\n`
+        }
+        if (content.details) {
+          text += `   Detalhes: ${content.details}\n`
+        }
+        if (content.text) {
+          text += `   ${content.text}\n`
+        }
+        
+        return text
+      })
+      .filter(section => section.trim() !== '📌:')
       .join('\n')
   }
   
@@ -74,4 +141,3 @@
     }
   })
   </script>
-  

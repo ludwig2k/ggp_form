@@ -128,10 +128,59 @@
   placeholder="Insira sua resposta"
 />
 
+<!-- 15 -->
+<QuestionCheckboxGroup
+  v-model="form.aposentadoria"
+  :number="11"
+  title="Solicitação de Aposentadoria"
+  subtitle="Selecione no máximo 3 opções."
+  :options="[
+    'Dúvidas quanto ao planejamento para aposentadoria',
+    'Quanto a normas legais como prazos e alíquotas',
+    'Tempo de duração do meu processo',
+    'Não possuo dúvida ou dificuldade'
+  ]"
+  required
+/>
+
+<!-- After aposentadoria checkbox group -->
+<QuestionTextarea
+  v-model="form.outraAposentadoria"
+  :number="12"
+  title="Outra dúvida não citada?"
+  subtitle="Sobre solicitação de aposentadoria"
+  placeholder="Insira sua resposta"
+/>
+
+<!-- 16 -->
+<QuestionCheckboxGroup
+  v-model="form.folhaPagamento"
+  :number="12"
+  title="Folha de pagamento e descontos"
+  subtitle="Selecione no máximo 3 opções."
+  :options="[
+    'Quando acontecem os descontos',
+    'Prazos de fechamento de folha e o que isso impacta',
+    'Visualização do contracheque',
+    'Outra dúvida',
+    'Não possuo dúvida ou dificuldade'
+  ]"
+  required
+/>
+
+<!-- After folhaPagamento checkbox group -->
+<QuestionTextarea
+  v-model="form.outraFolhaPagamento"
+  :number="13"
+  title="Outra dúvida não citada?"
+  subtitle="Sobre folha de pagamento e descontos"
+  placeholder="Insira sua resposta"
+/>
+
 <!-- 11 -->
 <div class="mb-10">
   <h2 class="font-semibold text-gray-800 mb-2">
-    11. Você sabe o que fazer quando precisa de um servidor a mais na equipe?
+    13. Você sabe o que fazer quando precisa de um servidor a mais na equipe?
     <span class="text-red-500">*</span>
   </h2>
   <div class="space-y-2">
@@ -149,7 +198,7 @@
 <!-- 12 -->
 <QuestionTextarea
   v-model="form.duvidaServidorExtra"
-  :number="12"
+  :number="14"
   title="Caso não para a pergunta anterior, qual a sua dúvida?"
   placeholder="Insira sua resposta"
 />
@@ -157,7 +206,7 @@
 <!-- 13 -->
 <div class="mb-10">
   <h2 class="font-semibold text-gray-800 mb-2">
-    13. Você sabe o que fazer quando precisa desligar um servidor?
+    15. Você sabe o que fazer quando precisa desligar um servidor?
     <span class="text-red-500">*</span>
   </h2>
   <div class="space-y-2">
@@ -175,41 +224,11 @@
 <!-- 14 -->
 <QuestionTextarea
   v-model="form.duvidaDesligarServidor"
-  :number="14"
+  :number="16"
   title="Caso não para a pergunta anterior, qual a sua dúvida?"
   placeholder="Insira sua resposta"
 />
 
-<!-- 15 -->
-<QuestionCheckboxGroup
-  v-model="form.aposentadoria"
-  :number="15"
-  title="Solicitação de Aposentadoria"
-  subtitle="Selecione no máximo 3 opções."
-  :options="[
-    'Dúvidas quanto ao planejamento para aposentadoria',
-    'Quanto a normas legais como prazos e alíquotas',
-    'Tempo de duração do meu processo',
-    'Não possuo dúvida ou dificuldade'
-  ]"
-  required
-/>
-
-<!-- 16 -->
-<QuestionCheckboxGroup
-  v-model="form.folhaPagamento"
-  :number="16"
-  title="Folha de pagamento e descontos"
-  subtitle="Selecione no máximo 3 opções."
-  :options="[
-    'Quando acontecem os descontos',
-    'Prazos de fechamento de folha e o que isso impacta',
-    'Visualização do contracheque',
-    'Outra dúvida',
-    'Não possuo dúvida ou dificuldade'
-  ]"
-  required
-/>
 
 <!-- Section title -->
 <div class="mt-12 mb-4">
@@ -336,7 +355,9 @@ const form = ref({
   melhorias: '',
   nome: '',
   aposentadoria: [],
-  folhaPagamento: []
+  folhaPagamento: [],
+  outraAposentadoria: '',
+  outraFolhaPagamento: ''
 })
 
 const submitting = ref(false)
@@ -449,4 +470,3 @@ const submitWithName = async () => {
   margin-bottom: 4rem !important;
 }
 </style>
-``` 
