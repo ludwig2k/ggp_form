@@ -30,11 +30,28 @@ def receive_form():
     if not data:
         return jsonify({"error": "Nenhum dado recebido"}), 400
 
+    # Validate expected fields
+    expected_fields = {
+        "ferias", "outraFerias", "ponto", "outraPonto",
+        "gratificacoes", "outraGratificacoes",
+        "atestados", "outraAtestados",
+        "licencas", "outraLicencas",
+        "servidorExtra", "duvidaServidorExtra",
+        "desligarServidor", "duvidaDesligarServidor",
+        "esperaGGDP", "justificativaGGDP", "melhorias",
+        "aposentadoria",  # New field
+        "folhaPagamento",  # New field
+        "nome"
+    }
+
+    # Log received data with better formatting
     print("\n📋 Formulário recebido:")
     for k, v in data.items():
-        print(f"- {k}: {v}")
+        if k in expected_fields:
+            print(f"- {k}: {v}")
+        else:
+            print(f"⚠️ Campo não esperado: {k}")
 
-    # Optional: store responses in database (SQLite example)
     try:
         user_name = data.get("nome", "Sem nome")
         form_data = {k: v for k, v in data.items() if k != "nome"}
@@ -47,8 +64,10 @@ def receive_form():
             },
         )
         db.session.commit()
+        print("✅ Dados salvos com sucesso no banco")
     except Exception as e:
         print("⚠️ Erro ao salvar no banco:", e)
+        return jsonify({"error": "Erro ao salvar dados"}), 500
 
     return jsonify({"message": "Formulário recebido com sucesso!"}), 200
 

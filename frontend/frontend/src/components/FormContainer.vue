@@ -180,6 +180,37 @@
   placeholder="Insira sua resposta"
 />
 
+<!-- 15 -->
+<QuestionCheckboxGroup
+  v-model="form.aposentadoria"
+  :number="15"
+  title="Solicitação de Aposentadoria"
+  subtitle="Selecione no máximo 3 opções."
+  :options="[
+    'Dúvidas quanto ao planejamento para aposentadoria',
+    'Quanto a normas legais como prazos e alíquotas',
+    'Tempo de duração do meu processo',
+    'Não possuo dúvida ou dificuldade'
+  ]"
+  required
+/>
+
+<!-- 16 -->
+<QuestionCheckboxGroup
+  v-model="form.folhaPagamento"
+  :number="16"
+  title="Folha de pagamento e descontos"
+  subtitle="Selecione no máximo 3 opções."
+  :options="[
+    'Quando acontecem os descontos',
+    'Prazos de fechamento de folha e o que isso impacta',
+    'Visualização do contracheque',
+    'Outra dúvida',
+    'Não possuo dúvida ou dificuldade'
+  ]"
+  required
+/>
+
 <!-- Section title -->
 <div class="mt-12 mb-4">
   <h2 class="text-xl font-bold text-blue-800">Alinhando Expectativas</h2>
@@ -191,7 +222,7 @@
 <!-- 15 -->
 <QuestionCheckboxGroup
   v-model="form.esperaGGDP"
-  :number="15"
+  :number="17"
   title="O que você espera da GGDP?"
   subtitle="Na sua visão, qual o nosso papel (ou qual deveria ser) na SEAD e na sua liderança?"
   :options="[
@@ -208,7 +239,7 @@
 <!-- 16 -->
 <QuestionTextarea
   v-model="form.justificativaGGDP"
-  :number="16"
+  :number="18"
   title="Sobre a pergunta anterior, justifique sua resposta e/ou nos conte qual outra competência que não foi citada:"
   placeholder="Insira sua resposta"
   required
@@ -217,14 +248,13 @@
 <!-- 17 -->
 <QuestionTextarea
   v-model="form.melhorias"
-  :number="17"
+  :number="19"
   title="Nos conte algo que podemos melhorar que impactará positivamente na gestão da sua equipe!"
   subtitle="Esse é um campo feito para melhorarmos nossa atuação, e te ajudarmos na sua gestão!"
   placeholder="Insira sua resposta"
   required
 />
 
-    <!-- Continue your questions 5–17 (same as before) -->
 
     <!-- === Submit Button + Modal === -->
     <div class="pt-6 border-t mt-8">
@@ -304,7 +334,9 @@ const form = ref({
   esperaGGDP: [],
   justificativaGGDP: '',
   melhorias: '',
-  nome: ''
+  nome: '',
+  aposentadoria: [],
+  folhaPagamento: []
 })
 
 const submitting = ref(false)
@@ -417,3 +449,4 @@ const submitWithName = async () => {
   margin-bottom: 4rem !important;
 }
 </style>
+``` 

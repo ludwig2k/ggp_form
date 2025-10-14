@@ -158,4 +158,28 @@ const handleNavClick = (view) => {
 .form-wide > * {
   width: 100% !important;
 }
+input[type="text"],
+input[type="password"],
+textarea {
+  color: #374151 !important; /* gray-700 */
+  background-color: white !important;
+}
+
+/* Ensure placeholder text is visible but slightly dimmed */
+input::placeholder,
+textarea::placeholder {
+  color: #9CA3AF !important; /* gray-400 */
+}
+
+/* Ensure text remains visible when autofilled */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: #374151 !important;
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
 </style>
