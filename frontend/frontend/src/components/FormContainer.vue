@@ -377,7 +377,7 @@ const submitWithName = async () => {
   error.value = ''
 
   try {
-    const res = await axios.post('http://127.0.0.1:5000/api/form', form.value)
+    const res = await axios.post('https://formggdp.devgoiania.com/api/form', form.value)
     console.log('Resposta do servidor:', res.data)
     success.value = true
     userName.value = ''

@@ -131,7 +131,7 @@
   
   onMounted(async () => {
     try {
-      const res = await axios.get('http://127.0.0.1:5000/api/form/all')
+      const res = await axios.get('https://formggdp.devgoiania.com/api/form/all')
       responses.value = res.data
       expanded.value = Array(responses.value.length).fill(false)
     } catch (err) {
